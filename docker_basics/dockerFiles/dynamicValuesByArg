@@ -1,0 +1,17 @@
+ARG PARENT_IMAGE=node:14.5.0-alpine
+
+FROM $PARENT_IMAGE
+
+COPY package.json package.json /docker_basics/
+
+WORKDIR /docker_basics
+
+RUN npm install --production
+
+ENV PORT 9091
+
+COPY . /docker_basics/
+
+ENTRYPOINT ["node"]
+
+CMD ["examples/basic.js"]
