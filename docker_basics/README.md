@@ -19,14 +19,13 @@
 - Parent Image - Image which Our App Image Based on
 - Base Image  - Image Which Parent Image Based on.
 
-
 **To build an Image:**
 
-`docker build -t <IMAGE_NAME>:<TAG_NAME> -f <Dockerfile Path> <Context Path>`
+```
+docker build -t <IMAGE_NAME>:<TAG_NAME> -f <Dockerfile Path> <Context Path>
 
-Eg:
-
-`docker build -t docker-session:basic -f dockerfiles/basic .`
+docker build -t docker-session:basic -f dockerfiles/basic .
+```
 
 **Provide Dynamic Values**
 - Declare ARG in dockerFile (like ARG KEY=VALUE).
@@ -46,11 +45,11 @@ docker build -t docker-session:dynamic -f dockerFiles/dynamicValuesByArg --build
 
 **To run Container:**
 
-`docker run <OPTIONS > <IMAGE_NAME>`
+```
+docker run <OPTIONS > <IMAGE_NAME>
 
-Eg:
-
-`docker run -dp 9092:9091 docker_basics`
+docker run -dp 9092:9091 docker-session:basic
+```
 
 
 **To create Volume:**
@@ -63,12 +62,20 @@ Eg:
 - Mount to location(/var/lib/....)
 - Cannot Provide specific location to Store data
 
-`docker volume create <VOLUME_NAME>`
+```
+docker volume create <VOLUME_NAME>
 
-Eg:
+docker volume create apiStatus
+```
 
-`docker volume create apiStatus`
+**To use Volume**
 
+```
+docker run -v <VOLUME_NAME>:<PATH TO PERSIST> <IMAGE_NAME>`
+
+docker run -dp 9091:9091 -v apiStatus:/docker_basics/data docker-session:persistence
+
+```
 
 **To Use Bind Mount**
 
@@ -76,17 +83,16 @@ Eg:
  - Can provide specific location to Store data
  - Useful in development Mode
 
-`docker run <OPTIONS> <IMAGE_NAME>`
+```
+docker run <OPTIONS> <IMAGE_NAME>
 
-
-`
 docker run -p 9091:9091 \
 	--env PORT=9091  \
 	-w /docker_basics \
 	-v "$(pwd):/docker_basics" \
 	node:14.5.0-alpine \
 	sh -c "npm install && npm run bindMount"
-`
+```
 
 ## To be Continued:
 - Docker Network
