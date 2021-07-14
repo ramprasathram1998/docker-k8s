@@ -1,0 +1,11 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: nodejs-basic
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nodejs-basic
+  template:
+    

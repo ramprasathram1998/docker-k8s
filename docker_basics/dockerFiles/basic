@@ -6,8 +6,6 @@ WORKDIR /docker_basics
 
 RUN npm install --production
 
-ENV PORT 9091
-
 COPY . /docker_basics/
 
 CMD ["node", "examples/basic.js"]

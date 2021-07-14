@@ -86,7 +86,7 @@ docker run -dp 9091:9091 -v apiStatus:/docker_basics/data docker-session:persist
 ```
 docker run <OPTIONS> <IMAGE_NAME>
 
-docker run -p 9091:9091 \
+docker run -p 9097:9091 \
 	--env PORT=9091  \
 	-w /docker_basics \
 	-v "$(pwd):/docker_basics" \
